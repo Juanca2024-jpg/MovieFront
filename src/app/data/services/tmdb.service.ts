@@ -13,27 +13,24 @@ export class TmdbService {
 
   private readonly API_URL = environment.apiUrl;
   private readonly BEARER_TOKEN = environment.tmdbBearerToken;
+  private headers = new HttpHeaders({
 
-  constructor(private http: HttpClient) {}
-
- /*  searchMovies(query: string, page: number = 1): Observable<any> {
-    return this.http.get(`${this.baseUrl}/search/movie`, {
-      params: {
-        api_key: this.apiKey,
-        query: query,
-        page: page.toString(),
-      },
-    });
-  }
- */
-  
-  getMovieDetails(movieId: number): Observable<MovieDetails> {
-    const headers = new HttpHeaders({
       Authorization: `Bearer ${this.BEARER_TOKEN}`,
       Accept: 'application/json',
   });
 
-    return this.http.get<MovieDetails>(`${this.API_URL}/${movieId}?language=en-US`, { headers });
+  searchMovies(query: string, page: number): Observable<any> {
+    const params = {
+      query,
+      include_adult: 'false',
+      language: 'es-MX',
+      page: `${page}`,
+    };
+    return this._http.get<any>(`${this.API_URL}/search/movie`, { headers: this.headers, params });
+  }
+  
+  getMovieDetails(movieId: number): Observable<any> {
+    return this._http.get(`${this.API_URL}/movie/${movieId}?language=en-US`, { headers: this.headers });
   }
 
   getImageUrl(path: string): string {

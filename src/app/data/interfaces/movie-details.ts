@@ -21,3 +21,11 @@ export interface MovieDetails {
     tag_line:string;
     title:string;
 }
+
+export interface MovieCardDetails {
+    id: number,
+    original_title: string,
+    overview: string,
+    poster_path: string,
+    release_date: string,
+};
