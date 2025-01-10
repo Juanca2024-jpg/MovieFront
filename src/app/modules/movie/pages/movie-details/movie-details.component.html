@@ -1,3 +1,59 @@
 <div class="container">
-    <p>movie-details works!</p>
+    <div id="contenedor" class="row g-0">
+        <div class="col-md-4 sombra margin2">
+            <img [src]="getImagen(movieDetails.poster_path)" class="img-fluid " alt="Poster">
+        </div>
+        <div class="col-md-8 margin2">
+            <div class="card-body center-contenido">
+                <h1 class="h1 sombra2" >{{movieDetails.original_title}}</h1>
+                <div class="description text-center">{{movieDetails.overview}}</div>
+                <div class="margin tamanio">
+                    <div class="tamanio">
+                        <div class="tamanio">
+                            <b>Año:</b> {{movieDetails.release_date}}
+                        </div>
+                    </div>
+                    <div class="tamanio">
+                        <div class="tamanio">
+                            <b>Generos:</b> {{getGeneros(movieDetails.genres)}}
+                        </div>
+                    </div>
+                    <div class="tamanio">
+                        <div class="tamanio">
+                            <b>Popularidad:</b> {{movieDetails.popularity}}
+                        </div>
+                    </div>
+                    <div class="tamanio">
+                        <div class="tamanio">
+                            <b>Lenguajes:</b> {{getLenguajes(movieDetails.spoken_languages)}}
+                        </div>
+                    </div>
+                    <div class="tamanio">
+                        <div class="tamanio">
+                            <b>Duracion:</b> {{getDuracion(movieDetails.runtime)}}
+                        </div>
+                    </div>
+                    <div class="tamanio">
+                        <div class="tamanio">
+                            <b>Compañias que la producieron:</b> {{getCompaniasProduccion(movieDetails.production_companies)}}
+                        </div>
+                    </div>
+                    <div class="tamanio">
+                        <div class="tamanio">
+                            <b>Paises donde se produjo:</b> {{getPaisesProduccion(movieDetails.production_countries)}}
+                        </div>
+                    </div>
+                    <div class="botones-contenedor">
+                        <div class="text-center margin">
+                            <a href="/home" class="btn btn-dark">Regresar</a>
+                        </div>
+                        <div class="text-center margin">
+                            <a [href]="movieDetails.homepage" class="btn btn-dark">Ver pelicula</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
+import { MovieDetails } from '@data/interfaces/movie-details';
 
 @Injectable({
   providedIn: 'root',
@@ -23,13 +24,13 @@ export class TmdbService {
   }
  */
   
-  getMovieDetails(movieId: number): Observable<any> {
+  getMovieDetails(movieId: number): Observable<MovieDetails> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.BEARER_TOKEN}`,
       Accept: 'application/json',
     });
 
-    return this.http.get(`${this.API_URL}/${movieId}?language=en-US`, { headers });
+    return this.http.get<MovieDetails>(`${this.API_URL}/${movieId}?language=en-US`, { headers });
   }
 
   getImageUrl(path: string): string {

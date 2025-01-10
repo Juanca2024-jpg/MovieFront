@@ -1,3 +1,50 @@
 .container {
     margin-top: 70px;
 }
+.h1 {
+    width: 100vh;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2vh;
+    margin-left: 10vh;
+}
+.description {
+    width: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2vh;
+    margin-left: 10vh;
+}
+.margin{
+    margin: 5vh;
+    margin-left: 10vh;
+}
+.margin2{
+    margin-top: 5vh;
+}
+.tamanio{
+    width: 100vh;
+}
+.sombra {
+    box-shadow: 20px 20px 40px rgba(0, 0, 0,5);
+}
+.sombra2 {
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+.center-contenido{
+    align-items: end;
+    justify-content: end;
+}
+.botones-contenedor{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
