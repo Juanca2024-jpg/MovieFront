@@ -1,7 +1,10 @@
 <div class="search-container">
   <h1>Buscador de Películas TMDB</h1>
   <div class="input-group mt-3">
-      <input type="text" [(ngModel)]="query" class="form-control" placeholder="Buscar películas...">
-      <button class="btn btn-primary" type="button">Buscar</button>
+      <input 
+      type="text" 
+      [formControl]="query" 
+      class="form-control" 
+      placeholder="Buscar películas...">
   </div>
 </div>

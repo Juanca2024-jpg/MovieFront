@@ -1,0 +1,19 @@
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4 image-container">
+            <img [src]="getImage(movie.poster_path)" class="img-fluid rounded-start" alt="Poster">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{maxTitle(movie.original_title)}}</h5>
+                <p class="card-text">{{maxDescription(movie.overview)}}</p>
+                <p class="card-text">
+                    <small class="text-body-secondary">Año: {{movie.release_date}}</small>
+                </p>
+                <div class="button-container">
+                    <a [href]="'/home/movie/'+movie.id">Ver detalle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

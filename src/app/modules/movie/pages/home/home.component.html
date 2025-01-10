@@ -1,4 +1,8 @@
 <div class="container">
-    <app-search-bar></app-search-bar>
-    <app-movie-list></app-movie-list>
+    <app-search-bar (search)="onSearch($event)"></app-search-bar>
+    <app-movie-list [movies]="movies"></app-movie-list>
+    <app-pagination 
+    [pageActual]="page" 
+    [total_pages]="total_page"
+    (pageSelecion)="changePage($event)"></app-pagination>
 </div>

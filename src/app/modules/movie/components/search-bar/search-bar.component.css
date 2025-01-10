@@ -1,5 +1,7 @@
 .search-container {
+    height: 200px;
     text-align: center;
+    align-content: center;
 }
 .search-container h1 {
     font-size: 2rem;

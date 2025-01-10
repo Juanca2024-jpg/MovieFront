@@ -1,16 +1,25 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs';
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
+  styleUrl: './search-bar.component.css'
 })
-export class SearchBarComponent {
-  query: string = '';
+export class SearchBarComponent implements OnInit {
+  
+  query = new FormControl();
   @Output() search = new EventEmitter<string>();
 
-  onSearch() {
-    if (this.query.trim()) {
-      this.search.emit(this.query);
-    }
+  ngOnInit() {
+    this.query.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      map(value => value.trim()),
+      filter(value => value.length > 0)
+    ).subscribe(value => {
+      this.search.emit(value);
+    });
   }
 }

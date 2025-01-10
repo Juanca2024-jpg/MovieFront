@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
@@ -8,7 +8,10 @@ import { MovieDetails } from '@data/interfaces/movie-details';
   providedIn: 'root',
 })
 export class TmdbService {
-  private readonly API_URL = 'https://api.themoviedb.org/3/movie';
+
+  private readonly _http = inject(HttpClient);
+
+  private readonly API_URL = environment.apiUrl;
   private readonly BEARER_TOKEN = environment.tmdbBearerToken;
 
   constructor(private http: HttpClient) {}
@@ -28,7 +31,7 @@ export class TmdbService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.BEARER_TOKEN}`,
       Accept: 'application/json',
-    });
+  });
 
     return this.http.get<MovieDetails>(`${this.API_URL}/${movieId}?language=en-US`, { headers });
   }
