@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
-
-//import * as components from './components';
+import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 
 @NgModule({
  imports: [
@@ -14,13 +13,13 @@ import { provideHttpClient } from '@angular/common/http';
     CommonModule
  ],
  providers: [ provideHttpClient () ],
- //declarations: [...components.components],
+ declarations: [ AlertDialogComponent ],
  exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-   // ...components.components
+    AlertDialogComponent
  ],
 })
 export class SharedModule {}

@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { IMAGEN_BASE, MAX_DESCRIPCION, MAX_TITLE } from '@data/constants/movie';
-import { MovieCardDetails, MovieDetails } from '@data/interfaces/movie-details';
+import { MovieCardDetails } from '@data/interfaces/movie-details';
 import { TmdbService } from '@data/services/tmdb.service';
 
 @Component({
@@ -22,7 +22,6 @@ export class MovieCardComponent {
 
   getImage(path: string): string{
     if (path == null || ''){
-      console.log(path)
       return IMAGEN_BASE;
     }
     return this._tmdbService.getImageUrl(path);

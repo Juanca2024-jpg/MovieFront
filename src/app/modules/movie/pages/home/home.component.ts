@@ -1,16 +1,19 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { TmdbService } from '@data/services/tmdb.service';
+import { PopupService } from '@shared/services/popup.service';
+import { SharedModule } from '@shared/shared.module';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
 
   private readonly _tmdbService = inject(TmdbService);
-  private readonly _viewportScroller = inject(ViewportScroller)
+  private readonly _viewportScroller = inject(ViewportScroller);
+  private readonly _popupSerice = inject(PopupService);
 
   movies: any[] = [];
   query: string = '';
@@ -25,8 +28,10 @@ export class HomeComponent {
         this.page = response.page;
         this.total_page = response.total_pages;
       },
-      error: (err) => {
-        console.error('Error fetching movies:', err);
+      error: (error) => {
+        console.log(error);
+        this._popupSerice.showError(error.error.status_message);
+        console.error('Error fetching movies:', error);
       }
     });
   }

@@ -17,7 +17,7 @@ import { MovieCardComponent } from './components/movie-card/movie-card.component
     MovieListComponent, 
     MovieDetailsComponent,
     MovieCardComponent,
-    PaginationComponent
+    PaginationComponent,
 ],
  imports: [SharedModule, MovieRoutingModule],
 })

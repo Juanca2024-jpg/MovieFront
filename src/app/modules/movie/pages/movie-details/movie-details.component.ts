@@ -2,6 +2,7 @@ import { Component, inject, Inject, IterableDiffers } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieDetails } from '@data/interfaces/movie-details';
 import { TmdbService } from '@data/services/tmdb.service';
+import { PopupService } from '@shared/services/popup.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -10,8 +11,9 @@ import { TmdbService } from '@data/services/tmdb.service';
 })
 export class MovieDetailsComponent {
 
-  private readonly _routes = inject(ActivatedRoute)
-  private readonly _tmdbService = inject(TmdbService)
+  private readonly _routes = inject(ActivatedRoute);
+  private readonly _tmdbService = inject(TmdbService);
+  private readonly _popupSerice = inject(PopupService);
 
   movieId: number | null = null;
   movieDetails:MovieDetails={
@@ -54,9 +56,9 @@ export class MovieDetailsComponent {
     this._tmdbService.getMovieDetails(movieId).subscribe({
       next: (data) => {
         this.movieDetails = data;
-        console.log('Movie Details:', data);
       },
       error: (error) => {
+        this._popupSerice.showError(error);
         console.error('Error fetching movie details:', error);
       },
     });
@@ -65,6 +67,7 @@ export class MovieDetailsComponent {
   getImagen(path: string): string{
     return this._tmdbService.getImageUrl(path);
   }
+
   getDuracion(tiempo:number){
     if(tiempo<60){
       return String(tiempo)+' min';
@@ -83,15 +86,19 @@ export class MovieDetailsComponent {
       return String(resultado)+' h'+duracion+' min'
     }
   }
+
   getCompaniasProduccion(companias:{id: number,logo_path: string,name: string,origin_country: string}[]){
     return companias.map(item=> item.name).join(', ');
   }
+
   getPaisesProduccion(paises:{iso_3166_1:string,name:string}[]){
     return paises.map(item => item.name).join(", ");
   }
+
   getGeneros(generos:{id:number,name:string}[]){
     return generos.map(item=> item.name).join(', ');
   }
+
   getLenguajes(lenguajes:{name:string}[]){
     return lenguajes.map(item=>item.name).join(', ');
   }

@@ -12,6 +12,9 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { MovieModule } from '@modules/movie/movie.module';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
 	declarations: [
@@ -21,7 +24,9 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 		HeaderComponent],
 	imports: [
 		BrowserModule, 
-		BrowserAnimationsModule, 
+		BrowserAnimationsModule,
+		MatDialogModule,
+		MatButtonModule,  
 		AppRoutingModule, 
 		CoreModule, 
 		SharedModule, 

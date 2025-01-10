@@ -11,7 +11,7 @@
                     <small class="text-body-secondary">Año: {{movie.release_date}}</small>
                 </p>
                 <div class="button-container">
-                    <a [href]="'/home/movie/'+movie.id">Ver detalle</a>
+                    <a [routerLink]="['/home/movie',movie.id]">Ver detalle</a>
                 </div>
             </div>
         </div>
